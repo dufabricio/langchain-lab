@@ -1,7 +1,7 @@
 [project]
 name = "langchain-lab"
 version = "0.1.0"
-description = "Laboratório para experimentar LangChain e LangGraph com PDM"
+description = "Laboratório para experimentar LangChain e outros frameworks de IA com PDM"
 authors = [
     {name = "Eduardo Fabricio", email = "eduardo.fabricio@superbid.net"},
 ]
@@ -30,14 +30,42 @@ build-backend = "pdm.backend"
 distribution = false
 
 [tool.pdm.scripts]
+# LangChain examples
+simple-chat = "python -m src.langchain.simple_chat"
+langchain-simple = "python src/langchain/simple_chat/main.py"
+
+# Desenvolvimento
+format = "black src/"
+lint = "flake8 src/"
+test = "pytest tests/"
+
+# Legacy (manter por compatibilidade)
 chat = "python simple_chat_console.py"
-format = "black ."
-lint = "flake8 ."
 
 [tool.black]
 line-length = 88
 target-version = ['py39']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
 
 [tool.isort]
 profile = "black"
 line_length = 88
+src_paths = ["src", "tests"]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = [".git", "__pycache__", "dist", "build", ".venv"]

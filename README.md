@@ -54,3 +54,4 @@ pdm run python simple_chat_console.py
 ## 💡 Exemplo de Uso
 
 ```
+```
