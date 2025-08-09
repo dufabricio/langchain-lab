@@ -8,14 +8,12 @@ load_dotenv()
 
 
 
-
 print(" CHALLENGE: Chain of Runnables reverse word")
 
 # create runnable chain nodes
 
 # NODE 1
 runnable_1_start = RunnablePassthrough()
-
 
 # NODE 1.1
 def reverse_word(word: str) -> str:
@@ -40,4 +38,9 @@ runnable_5_finish_status = RunnablePassthrough.assign(status=lambda json:"finish
 # create runnable chain
 chain = runnable_1_start | runnable_4_reverse_and_count_chars | runnable_5_finish_status
 
-print(chain.invoke("Hello World :: Lang Chain :: Runnables Working !!! :)"))
+
+def start_chat() -> str:
+    return input("Enter a phrase or word: ")
+
+
+print(chain.invoke(start_chat()))
