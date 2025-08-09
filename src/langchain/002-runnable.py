@@ -35,3 +35,8 @@ seq = RunnableSequence(
 
 print(seq.invoke(2))
 
+
+# parallel simple sintax
+
+sequence = add_one_runnable | { "multiply_task1":multiply_runnable, "multiply_task2":multiply_runnable } 
+print(sequence.invoke(3))
